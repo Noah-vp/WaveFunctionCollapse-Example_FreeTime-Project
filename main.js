@@ -14,11 +14,13 @@ var DebugLogging = false;
 
 
 function setup() {
-  createCanvas(600, 600);
+  var host = document.getElementById('canvas-host');
+  var c = createCanvas(350, 350);
+  if(host){ c.parent('canvas-host'); }
   CreateTilemap();
 }
 function draw(){
-  background(220); 
+  background(11,15,23); 
   if(DebugMode == false){
     CollapseOne();
   }
@@ -65,12 +67,12 @@ function DrawTiles(){
                     break;
                   }
               }
-              else {fill(255)}
+              else {fill(18,24,38)}
               noStroke();
               rect(Padding + x * ((width-Padding*2)/Size), Padding + y * ((height-Padding*2)/Size), (width-Padding*2)/Size, (height-Padding*2)/Size);
               for(let e = 0; e < Tiles[y+(x*Size)+1].length; e++){
                 if(DebugText){
-        push();fill(0);translate((Padding + x * ((width-Padding*2)/Size)) + Padding/PaddingDenominator ,(Padding + y * ((height-Padding*2)/Size)) + Padding/PaddingDenominator);textAlign(LEFT, TOP);textSize(FontSize);
+        push();fill(230);translate((Padding + x * ((width-Padding*2)/Size)) + Padding/PaddingDenominator ,(Padding + y * ((height-Padding*2)/Size)) + Padding/PaddingDenominator);textAlign(LEFT, TOP);textSize(FontSize);
         text(Tiles[y+(x*Size)+1][e], defbythree(e, "x") * ((width-Padding*2)/Size/3) , defbythree(e, "y") * (height-Padding*2)/Size/3);
         textSize(FontSize/1.3);
         text(y+(x*Size)+1  , 2 * ((width-Padding*2)/Size/3) , 2 * (height-Padding*2)/Size/3);
@@ -206,3 +208,6 @@ function keyPressed() {
     CollapseOne();
   }
 }
+// Simple restart: reinitialize the grid
+var restartBtnEl = document.getElementById('restart-btn');
+if(restartBtnEl){ restartBtnEl.addEventListener('click', function(){ CreateTilemap(); }); }

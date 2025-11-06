@@ -1,11 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<script src="p5.js"></script>
-<script src="main.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map Generator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="p5.js"></script>
+    <script src="main.js" defer></script>
   </head>
   <body>
-    <main>
+    <header class="app-header">
+      <div class="container header-row">
+        <a class="btn back-link" href="https://www.noahvp.dev">← Back to portfolio</a>
+        <div>
+          <h1>Wave Function Map Generator</h1>
+          <p class="subtitle">Generate a procedural map using your settings.</p>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <section class="card">
+        <h2>About this generator</h2>
+        <p>This demo uses constraint propagation to build a coherent map from simple rules.</p>
+        <ul>
+          <li>Each cell begins with several possible tiles.</li>
+          <li>When a cell collapses to one tile, neighbors are pruned to keep things consistent.</li>
+          <li>Repeat until the whole grid forms natural‑looking structures.</li>
+        </ul>
+        <h3>Tile legend</h3>
+        <ul>
+          <li><strong style="color:#00ff00">Green</strong>: Grassland</li>
+          <li><strong style="color:#23cefa">Blue</strong>: Water</li>
+          <li><strong style="color:#ffff00">Yellow</strong>: Sand</li>
+          <li><strong style="color:#a52a2a">Brown</strong>: Dirt</li>
+          <li><strong style="color:#5d3a1a">Dark Brown</strong>: Tree trunk</li>
+          <li><strong style="color:#0000ff">Deep Blue</strong>: Deep water</li>
+        </ul>
+        <p>Press Restart to see new variations.</p>
+      </section>
+      <div class="map-toolbar">
+        <div class="map-meta">Live generation preview</div>
+        <div class="btn-group">
+          <button class="btn" id="restart-btn" type="button">Restart</button>
+        </div>
+      </div>
+      <div class="map-frame">
+        <main id="canvas-host"></main>
+      </div>
     </main>
   </body>
-</html>
+  </html>
